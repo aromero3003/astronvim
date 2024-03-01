@@ -77,6 +77,9 @@ return {
   },
   {
     'tomasiser/vim-code-dark'
+  }, 
+  {
+    'xiyaowong/transparent.nvim',
   }
 
   --include luasnip-vimtex-snippets

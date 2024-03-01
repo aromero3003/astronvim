@@ -34,8 +34,10 @@ end
 
 return {
 
-    as("dm", { t "\\[ ", i(1), t " \\]" }),
-    as("mk", { t "\\( ", i(1), t " \\)" }),
+    as("dm", { t "$$", i(1), t "$$" }),
+    as("mk", { t "$", i(1), t "$" }),
+    -- as("dm", { t "\\[ ", i(1), t " \\]" }),
+    -- as("mk", { t "\\( ", i(1), t " \\)" }),
     as("prbl", fmta("\\problem{<>}{<>}", { i(1), i(2) }, {}), {}),
 
     as(";a", { t("\\alpha") }),
@@ -64,7 +66,13 @@ return {
     as({ trig = "exp" }, { t "\\exp(", i(1), t ")" }, { condition = in_mathzone }),
     as({ trig = "star" }, { t "\\star(", i(1), t ")" }, { condition = in_mathzone }),
     as({ trig = "perp" }, { t "\\perp(", i(1), t ")" }, { condition = in_mathzone }),
-
+    as({ trig = "vec" }, { t "\\vec{", i(1), t "}" }, { condition = in_mathzone }),
+    as({ trig = "sim" }, { t "_{\\si{", i(1), t "}}" }, { condition = in_mathzone }),
+    as({ trig = "(%d*)ums", regTrig = true }, { f(function (args, snip) return snip.captures[1] .. "_{\\si{\\frac{m}{s}}}" end ) }, { condition = in_mathzone }),
+    as({ trig = "(%d*)ukg", regTrig = true }, { f(function (args, snip) return snip.captures[1] .. "_{\\si{kg}}" end ) }, { condition = in_mathzone }),
+    as({ trig = "ukg" }, { t "_{\\si{kg}" }, { condition = in_mathzone }),
+    -- as({ trig = "vec", name = "vec" }, {"\\vec{$1}$0 "}),
+    -- as({ trig = "sim", name = "sim" }, {"_{\\si{$1}}"}),
     -- Solo en contexto matemático
     as("EE", t("\\exists")),
     as("AA", t "\\forall"),
@@ -75,7 +83,11 @@ return {
     as("xjj", t "x_{j}"),
     as("yjj", t "y_{j}"),
 
+    s("@O", t "\\Omega"),
+    as("sst",t"\\subset"),
+
     -- as("int", { t "\\int{", i(1), t "}" }, { condition = in_mathzone }),
-    as("fx", { t "f(x)", condition = in_mathzone }),
+    s("fx", { t "f(x)", condition = in_mathzone }),
+    s("fxy", { t "f(x,y)", condition = in_mathzone }),
 
 }

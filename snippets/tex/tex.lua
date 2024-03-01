@@ -6,7 +6,7 @@ local as = require "luasnip.util.extend_decorator".apply(s, { snippetType = "aut
 local t = ls.text_node
 local i = ls.insert_node
 local f = ls.function_node
--- local c = ls.choice_node
+local c = ls.choice_node
 -- local d = ls.dynamic_node
 -- local r = ls.restore_node
 -- local events = require("luasnip.util.events")
@@ -141,5 +141,26 @@ return {
                 i(2)
             }
         )
+    ),
+    s(
+        { trig = "enum", name = "Enumerate", dscr = "Enumerate environment", },
+        fmta("\\begin{enumerate}<><><>\n\t<>\n\\end{enumerate}",
+            {
+                f(function(args, _, _) return args[1][1] == "" and "" or "[label=\\" end, 1, {}),
+                i(1, "alph*)"),
+                f(function(args, _, _) return args[1][1] == "" and "" or "]" end, 1, {}),
+                i(2),
+            },
+            {}
+        ),
+        {}
+    ),
+    as(
+        {
+            trig ="hmk",
+            dscr = "New homework problem",
+        },
+        fmta("\\begin{homeworkProblem}\n\t<>\n\\end{homeworkProblem}",{i(1)},{}),
+        {}
     ),
 }

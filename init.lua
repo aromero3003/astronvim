@@ -154,7 +154,9 @@ return {
 
     -- require("vscode").load("dark")
     -- vim.cmd("colorscheme xcodedarkhc")
+    require("notify").setup({background_colour="#ffffff",})
     vim.cmd("colorscheme codedark")
+    require('transparent').toggle(true)
 
     -- vim.cmd("hi texCmd guifg=#ad3da4 guibg=NONE gui=NONE ctermfg=127 ctermbg=NONE cterm=NONE")
     -- vim.cmd("hi! link texMathEnvArgName texEnvArgName")

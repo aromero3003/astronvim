@@ -74,7 +74,6 @@ return {
         },
         fmta([[
             s(
-
                 {
                     trig ="<trig>",
                     dscr = "<dscr>",
